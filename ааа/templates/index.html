@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - UltraLuxury Store{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>UltraLuxury Phones</h1>
+        <p>Эксклюзивные устройства для ценителей роскоши</p>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <h2 class="section-title">Эксклюзивная Коллекция</h2>
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ product.image }}" alt="{{ product.name }}">
+                </div>
+                <div class="product-info">
+                    <h3>{{ product.name }}</h3>
+                    <p class="product-description">{{ product.description }}</p>
+                    <div class="product-price">${{ product.price }}</div>
+                    <div class="product-actions">
+                        <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-secondary">Подробнее</a>
+                        <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-primary">В корзину</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - UltraPhone Store{% endblock %}
+
+{% block content %}
+<section class="product-detail">
+    <div class="container">
+        <div class="product-detail-content">
+            <div class="product-image-large">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+            </div>
+            <div class="product-info-detail">
+                <h1>{{ product.name }}</h1>
+                <p class="product-description">{{ product.description }}</p>
+                
+                <div class="product-specs">
+                    <h3>Характеристики:</h3>
+                    <ul>
+                        {% for spec in product.specs %}
+                        <li>{{ spec }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="product-price-large">${{ product.price }}</div>
+                
+                <div class="product-actions-detail">
+                    <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn btn-primary btn-large">Добавить в корзину</a>
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">Назад к каталогу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
